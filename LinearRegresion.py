@@ -1,11 +1,35 @@
 
-import numpy as np
-import scipy.io as scio
-import matplotlib.pyplot as plt
-#%matplotlib inline
-
 def methodgradientdesc(nmax,theta0,theta1):
+
+    '''
+    This function creates scatter points by entering 3 parameters: nmax, theta0, theta1
+    we will obtain data for X and Y and so on fit to a linear regression line by numerical method
+    Gradient descent. nmax is the number of iterations for the algorithm
     
+    From a starting point (𝜃), we will try to move to a new point  𝜃′ , decreasing the cost funtion ( 𝐽(𝜃) ). 
+    We will do this many times, up to we find a minimum (or close enough to it).
+
+    Partial differentials of the cost function (using chain rule)
+    ∂𝐽∂𝜃0=2𝑚∑𝑖=1𝑚(ℎ𝜃(𝑥𝑖)−𝑦𝑖)
+    ∂𝐽∂𝜃1=2𝑚∑𝑖=1𝑚(ℎ𝜃(𝑥𝑖)−𝑦𝑖)⋅𝑥𝑖
+ 
+    Finally, we need to update iteratively the values for  𝜃0  and  𝜃1 . 
+    Using Gradient Descent algorithm with learning rate ( 𝛼 ) until convergence criterion ( 𝜖 ) is achieved:
+    
+    while (convergence==False):
+    𝜃′0=𝜃0−𝛼∂𝐽∂𝜃0
+    𝜃′1=𝜃1−𝛼∂𝐽∂𝜃1
+ 
+    𝐽′=𝐽(𝜃′0,𝜃′1)
+    Δ𝐽=𝑎𝑏𝑠(𝐽′−𝐽)
+
+    𝑐𝑜𝑛𝑣𝑒𝑟𝑔𝑒𝑛𝑐𝑒=(Δ𝐽<𝜖)
+    '''
+        
+    import numpy as np
+    import matplotlib.pyplot as plt
+    #%matplotlib inline
+
     X = (np.random.randn(100) + 1) * 50
     jitter = 50 * np.random.randn(100)
     y = theta0 + theta1 * X + jitter
@@ -56,7 +80,7 @@ def methodgradientdesc(nmax,theta0,theta1):
             print('Convergence FOUND!')
             print('The maximum number of iterations have been',i)
             print(f'The value of the new theta0 = {theta[i,0]:.2f} and the new theta1 = {theta[i,1]:.2f}')
-            print(f'Y = {theta[i,0]:.2f} + {theta[i,1]:.2f} * x')
+            print(f'Y = {theta[i,0]:.2f} {theta[i,1]:+.2f} * x')
             print(f'with the minimum cost value is {costes[i,2]:.2f}')
             costes_new = costes[0:i,:]
             theta_new = theta[0:i,:]
