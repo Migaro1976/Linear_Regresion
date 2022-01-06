@@ -51,7 +51,6 @@ As a final remark, we can extend this method to non linear hypothesis by extendi
 
 # Problem
 Giving the data provided below (x->y), find the best equation fit, using:
-
-Gradient Descent
-Normal Equations
+-Gradient Descent
+-Normal Equations
 Using your own python implementation, using numpy and scipy tools (not scipy!).
